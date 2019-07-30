@@ -13,6 +13,10 @@
 		D716BCC322F00C3E009156AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D716BCC122F00C3E009156AE /* Main.storyboard */; };
 		D716BCC522F00C3F009156AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D716BCC422F00C3F009156AE /* Assets.xcassets */; };
 		D716BCC822F00C3F009156AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D716BCC622F00C3F009156AE /* LaunchScreen.storyboard */; };
+		D716BCD322F023BF009156AE /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BCD222F023BF009156AE /* Device.swift */; };
+		D716BCD522F023CD009156AE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BCD422F023CD009156AE /* UIView.swift */; };
+		D716BCD722F023D5009156AE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BCD622F023D5009156AE /* UIColor.swift */; };
+		D716BCD922F02419009156AE /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BCD822F02419009156AE /* CGRect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +29,10 @@
 		D716BCC422F00C3F009156AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D716BCC722F00C3F009156AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D716BCC922F00C3F009156AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D716BCD222F023BF009156AE /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		D716BCD422F023CD009156AE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		D716BCD622F023D5009156AE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		D716BCD822F02419009156AE /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		F7721947747D64E67D2CFA7E /* Pods_Wadmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wadmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,6 +93,10 @@
 		D716BCCF22F01C8D009156AE /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D716BCD222F023BF009156AE /* Device.swift */,
+				D716BCD422F023CD009156AE /* UIView.swift */,
+				D716BCD622F023D5009156AE /* UIColor.swift */,
+				D716BCD822F02419009156AE /* CGRect.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -236,8 +248,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D716BCD522F023CD009156AE /* UIView.swift in Sources */,
+				D716BCD922F02419009156AE /* CGRect.swift in Sources */,
+				D716BCD322F023BF009156AE /* Device.swift in Sources */,
 				D716BCC022F00C3E009156AE /* ViewController.swift in Sources */,
 				D716BCBE22F00C3E009156AE /* AppDelegate.swift in Sources */,
+				D716BCD722F023D5009156AE /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
