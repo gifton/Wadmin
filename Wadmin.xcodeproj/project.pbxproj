@@ -38,6 +38,7 @@
 		D716BD0722F0291D009156AE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0622F0291D009156AE /* HomeView.swift */; };
 		D716BD0A22F0A4E1009156AE /* ReviewCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0922F0A4E1009156AE /* ReviewCountView.swift */; };
 		D716BD0C22F0AB54009156AE /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0B22F0AB54009156AE /* Analytics.swift */; };
+		D716BD1022F0D00F009156AE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0F22F0D00F009156AE /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		D716BD0622F0291D009156AE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D716BD0922F0A4E1009156AE /* ReviewCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCountView.swift; sourceTree = "<group>"; };
 		D716BD0B22F0AB54009156AE /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		D716BD0F22F0D00F009156AE /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F7721947747D64E67D2CFA7E /* Pods_Wadmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wadmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				D716BCF122F0263B009156AE /* LoginViewModel+Delegate.swift */,
+				D716BD0F22F0D00F009156AE /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				D716BCD322F023BF009156AE /* Device.swift in Sources */,
 				D716BCC022F00C3E009156AE /* ViewController.swift in Sources */,
 				D716BCDB22F02462009156AE /* String.swift in Sources */,
+				D716BD1022F0D00F009156AE /* HomeViewModel.swift in Sources */,
 				D716BCBE22F00C3E009156AE /* AppDelegate.swift in Sources */,
 				D716BCEC22F025EE009156AE /* LoginView.swift in Sources */,
 				D716BCE322F024E9009156AE /* Abbreviation.swift in Sources */,

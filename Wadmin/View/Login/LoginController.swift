@@ -61,7 +61,10 @@ extension LoginController: LoginDelegate {
                 do {
                     let me = try Me(fromURL: WesaturateAPI.meURL)
                     if me.admin {
-                        print("is admin")
+                        UserDefaults.setValue(me.firstName, forKey: UserDefaults.Keys.userFirstName)
+                        UserDefaults.setValue(me.lastName, forKey: UserDefaults.Keys.userLastName)
+                        UserDefaults.setValue(me.email, forKey: UserDefaults.Keys.userEmail)
+                        print("admin info set")
                         return true
                     }
                 } catch { print(error) }

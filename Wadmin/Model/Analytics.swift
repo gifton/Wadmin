@@ -126,4 +126,24 @@ extension Array where Element == Analytics.Element {
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
+    
+    func getHomeAnalytics() -> HomeAnalytics? {
+        var referral: Analytic?
+        var photos: Analytic?
+        var users: Analytic?
+        forEach {
+            if $0.name == HomeAnalytic.referral.rawValue {
+                referral = $0
+            } else if $0.name == HomeAnalytic.totalPhotos.rawValue{
+                photos = $0
+            } else if $0.name == HomeAnalytic.totalUsers.rawValue {
+                users = $0
+            }
+        }
+        
+        if let r = referral, let p = photos, let u = users {
+            return HomeAnalytics(referral: r, photos: p, users: u)
+        }
+        return nil
+    }
 }

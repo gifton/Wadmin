@@ -12,30 +12,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nView = HomeView(frame: Device.frame)
+        let nView = HomeView(withModel: HomeViewModel())
         nView.logoutLabel.addTapGestureRecognizer(action: logout)
         view = nView
-        
-        // Do any additional setup after loading the view.
-        getanalytics()
-    }
-
-    func getUserName() {
-        do {
-            let me = try Me(fromURL: WesaturateAPI.meURL)
-            print(me.firstName)
-        } catch {
-            print(error)
-        }
-    }
-    
-    func getanalytics() {
-        do {
-            let p = try Analytics(fromURL: URL(string: "https://api.wesaturate.com/admin/analytics")!)
-            print(p.first?.category)
-        } catch {
-            print(error)
-        }
     }
     
     func logout() {

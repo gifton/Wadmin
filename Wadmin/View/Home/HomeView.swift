@@ -10,12 +10,17 @@ import Foundation
 import UIKit
 
 class HomeView: UIView {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+
+    
+    init(withModel model: HomeViewModel) {
+        self.model = model
+        super.init(frame: Device.frame)
         backgroundColor = .white
         styleView(); setViews()
         setReviewView()
     }
+    
+    var model: HomeViewModel
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
