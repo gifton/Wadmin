@@ -37,7 +37,8 @@ extension LoginController: LoginDelegate {
         model.password = password
         model.completion = {
             completion()
-            if self.model.userIsValidated {
+            if self.userIsValidated {
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                     self.navigationController?.pushViewController(ViewController(), animated: false)
                 })
@@ -55,7 +56,18 @@ extension LoginController: LoginDelegate {
     
     var userIsValidated: Bool {
         get {
-            return model.userIsValidated
+            if model.userIsValidated {
+                print("model approved account")
+                do {
+                    let me = try Me(fromURL: WesaturateAPI.meURL)
+                    if me.admin {
+                        print("is admin")
+                        return true
+                    }
+                } catch { print(error) }
+            }
+            print("is not admin")
+            return false
         }
     }
     

@@ -36,6 +36,8 @@
 		D716BD0222F02873009156AE /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0122F02873009156AE /* Links.swift */; };
 		D716BD0422F02881009156AE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0322F02881009156AE /* User.swift */; };
 		D716BD0722F0291D009156AE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0622F0291D009156AE /* HomeView.swift */; };
+		D716BD0A22F0A4E1009156AE /* ReviewCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0922F0A4E1009156AE /* ReviewCountView.swift */; };
+		D716BD0C22F0AB54009156AE /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0B22F0AB54009156AE /* Analytics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		D716BD0122F02873009156AE /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
 		D716BD0322F02881009156AE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D716BD0622F0291D009156AE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D716BD0922F0A4E1009156AE /* ReviewCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCountView.swift; sourceTree = "<group>"; };
+		D716BD0B22F0AB54009156AE /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		F7721947747D64E67D2CFA7E /* Pods_Wadmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wadmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -140,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				D716BCF722F02767009156AE /* Helper.swift */,
+				D716BD0B22F0AB54009156AE /* Analytics.swift */,
 				D716BCF522F02698009156AE /* Me.swift */,
 				D716BD0322F02881009156AE /* User.swift */,
 				D716BCF922F0283A009156AE /* Photo.swift */,
@@ -189,6 +194,7 @@
 			children = (
 				D716BD0522F02916009156AE /* Login */,
 				D716BD0822F02929009156AE /* Home */,
+				D716BD0922F0A4E1009156AE /* ReviewCountView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -353,6 +359,7 @@
 				D716BD0722F0291D009156AE /* HomeView.swift in Sources */,
 				D716BCF022F02629009156AE /* UITextField.swift in Sources */,
 				D716BCD922F02419009156AE /* CGRect.swift in Sources */,
+				D716BD0A22F0A4E1009156AE /* ReviewCountView.swift in Sources */,
 				D716BCEA22F025DB009156AE /* LoginController.swift in Sources */,
 				D716BCF822F02767009156AE /* Helper.swift in Sources */,
 				D716BCD322F023BF009156AE /* Device.swift in Sources */,
@@ -365,6 +372,7 @@
 				D716BCF222F0263B009156AE /* LoginViewModel+Delegate.swift in Sources */,
 				D716BCFC22F0283F009156AE /* Photos.swift in Sources */,
 				D716BCFE22F02844009156AE /* Exif.swift in Sources */,
+				D716BD0C22F0AB54009156AE /* Analytics.swift in Sources */,
 				D716BCDF22F02497009156AE /* UIImage.swift in Sources */,
 				D716BCE122F024D0009156AE /* Defaults.swift in Sources */,
 				D716BCDD22F02474009156AE /* UICollectionView.swift in Sources */,
@@ -511,6 +519,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JL7TCK5Y58;
 				INFOPLIST_FILE = Wadmin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -530,6 +539,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JL7TCK5Y58;
 				INFOPLIST_FILE = Wadmin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,19 +1,8 @@
-//   let me = try Me(json)
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.meTask(with: url) { me, response, error in
-//     if let me = me {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 import Foundation
 
 // MARK: - Me
-struct Me: Codable {
+class Me: Codable {
     let id: String
     let firstName: String
     let lastName: String
@@ -22,7 +11,7 @@ struct Me: Codable {
     let location: String
     let bio: String
     let avatar: String
-    let createdAt: String
+    let createdAt: Date
     let email: String
     let emailPhotoStatus: Bool
     let emailNews: Bool
@@ -47,23 +36,42 @@ struct Me: Codable {
         case photosUploadedToday = "photos_uploaded_today"
         case admin = "admin"
     }
+    
+    init(id: String, firstName: String, lastName: String, username: String, site: String, location: String, bio: String, avatar: String, createdAt: Date, email: String, emailPhotoStatus: Bool, emailNews: Bool, emailMilestones: Bool, photosUploadedToday: Int, admin: Bool) {
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.username = username
+        self.site = site
+        self.location = location
+        self.bio = bio
+        self.avatar = avatar
+        self.createdAt = createdAt
+        self.email = email
+        self.emailPhotoStatus = emailPhotoStatus
+        self.emailNews = emailNews
+        self.emailMilestones = emailMilestones
+        self.photosUploadedToday = photosUploadedToday
+        self.admin = admin
+    }
 }
 
 // MARK: Me convenience initializers and mutators
 
 extension Me {
-    init(data: Data) throws {
-        self = try newJSONDecoder().decode(Me.self, from: data)
+    convenience init(data: Data) throws {
+        let me = try newJSONDecoder().decode(Me.self, from: data)
+        self.init(id: me.id, firstName: me.firstName, lastName: me.lastName, username: me.username, site: me.site, location: me.location, bio: me.bio, avatar: me.avatar, createdAt: me.createdAt, email: me.email, emailPhotoStatus: me.emailPhotoStatus, emailNews: me.emailNews, emailMilestones: me.emailMilestones, photosUploadedToday: me.photosUploadedToday, admin: me.admin)
     }
     
-    init(_ json: String, using encoding: String.Encoding = .utf8) throws {
+    convenience init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
     
-    init(fromURL url: URL) throws {
+    convenience init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
     
@@ -76,7 +84,7 @@ extension Me {
         location: String? = nil,
         bio: String? = nil,
         avatar: String? = nil,
-        createdAt: String? = nil,
+        createdAt: Date? = nil,
         email: String? = nil,
         emailPhotoStatus: Bool? = nil,
         emailNews: Bool? = nil,

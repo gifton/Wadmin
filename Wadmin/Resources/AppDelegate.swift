@@ -15,10 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        resetCredentials()
         window = UIWindow(frame: Device.frame)
         window?.makeKeyAndVisible()
-        window?.rootViewController = isUsersFirstTime()
-        // Override point for customization after application launch.
+        let nav = UINavigationController(rootViewController: isUsersFirstTime())
+        nav.isNavigationBarHidden = true
+        window?.rootViewController = nav
+        
         return true
     }
 
@@ -54,9 +57,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         print("user NOT authenticated")
         defaults.setValue(UserDefaults.authenticated.authenticated.rawValue, forKey: UserDefaults.Keys.authenticated)
+        
         return LoginController(withModel: LoginViewModel())
     }
 
-
+    func resetCredentials() {
+        let defaults = UserDefaults.standard
+        defaults.setValue(UserDefaults.authenticated.notAuthenticated.rawValue, forKey: UserDefaults.Keys.authenticated)
+        print(defaults.object(forKey: UserDefaults.Keys.authenticated) as Any)
+    }
 }
 

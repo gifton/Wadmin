@@ -17,18 +17,8 @@ class WesaturateAPI {
     private static let photoBase = "photos"
     private static let me = "me"
     private static let headers: HTTPHeaders = [ "Content-Type": "application/x-www-form-urlencoded" ]
-    // photos
-    public static var bestPhotos: URL {
-        return URL(string: WesaturateAPI._base + WesaturateAPI.photoBase + "?page=1&per_page=75&status=best")!
-    }
-    public static var allPhotos: URL {
-        return URL(string: WesaturateAPI._base + WesaturateAPI.photoBase)!
-    }
     
-    public static func search(ForPhoto id: String) -> URL {
-        return URL(string: WesaturateAPI._base + WesaturateAPI.photoBase + "/" + id)!
-    }
-    
+    public static var meURL: URL = URL(string: WesaturateAPI._base + WesaturateAPI.me)!
     // login: put
     public func login(withEmail email: String, andPassword password: String) {
         group?.enter()
@@ -56,6 +46,22 @@ class WesaturateAPI {
         }
     }
     
+    public static func logout() -> Bool {
+        guard let url = URL(string: WesaturateAPI._base + "auth") else { return  false}
+        var validated = true
+        Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: WesaturateAPI.headers)
+            .responseJSON { (response) in
+                
+                switch response.result {
+                case .success:
+                    validated = false
+                default:
+                    validated = true
+                }
+        }
+        return validated
+    }
+    
     
     var userIsauthenticated: Bool = false {
         didSet {
@@ -63,4 +69,6 @@ class WesaturateAPI {
             completion()
         }
     }
+    
+    
 }

@@ -10,8 +10,7 @@ class LoginView: UIView {
     
     // MARK: private objects
     private var sendButton = UIButton()
-    private let logo = UIImageView(image: #imageLiteral(resourceName: "camera"))
-    private let linkToLabel = UILabel()
+    private let logo = UIImageView(image: #imageLiteral(resourceName: "activity rings"))
     private var passwordTextField = UITextField()
     private var emailTextField = UITextField()
     
@@ -35,7 +34,7 @@ class LoginView: UIView {
         emailTextField.text = "Email"
         emailTextField.font = Device.font.lightBody(ofSize: .xLarge)
         emailTextField.addLeftPadding(size: 50)
-        let emailimg = UIImageView(image: #imageLiteral(resourceName: "email"))
+        let emailimg = UIImageView(image: #imageLiteral(resourceName: "icons8-important-mail-100"))
         emailimg.frame = CGRect(x: 20, y: 19, width: 18, height: 16)
         emailTextField.addSubview(emailimg)
         
@@ -46,13 +45,9 @@ class LoginView: UIView {
         passwordTextField.font = Device.font.lightBody(ofSize: .xLarge)
         passwordTextField.addLeftPadding(size: 50)
         passwordTextField.isSecureTextEntry = true
-        let passImg = UIImageView(image: #imageLiteral(resourceName: "password"))
+        let passImg = UIImageView(image: #imageLiteral(resourceName: "lock-solid"))
         passImg.frame = CGRect(x: 20, y: 19, width: 16, height: 18)
         passwordTextField.addSubview(passImg)
-        
-        linkToLabel.font = Device.font.body()
-        linkToLabel.textColor = Device.colors.primaryBlue
-        linkToLabel.text = "Not a member? Sign up"
         
         logo.contentMode = .scaleAspectFit
     }
@@ -63,30 +58,23 @@ class LoginView: UIView {
         addSubview(logo)
         addSubview(emailTextField)
         addSubview(passwordTextField)
-        addSubview(linkToLabel)
         
         // set delegates
         passwordTextField.delegate = self
         emailTextField.delegate = self
         
         // set targets
-        sendButton.addTapGestureRecognizer {
-            // confirm text existance
-            self.askValidation()
-        }
-        
-        linkToLabel.addTapGestureRecognizer(action: self.delegate.didRequestWebsite)
+        sendButton.addTapGestureRecognizer(action: askValidation)
         
         // set frames
         logo.frame = CGRect(x: 45, y: 55, width: 45, height: 45)
         emailTextField.frame = CGRect(x: 45, y: logo.bottom + 125, width: Device.width - 100, height: 55)
         passwordTextField.frame = CGRect(x: 45, y: emailTextField.bottom + 25, width: Device.width - 100, height: 55)
         sendButton.frame = CGRect(origin: CGPoint(x: 50, y: passwordTextField.bottom + 100), size: CGSize(width: Device.width - 100, height: 55))
-        linkToLabel.frame = CGRect(x: 50, y: sendButton.bottom + 15, width: Device.width - 80, height: 20)
     }
 }
 
-// loginView non-stylistic methods
+// MARK: loginView non-stylistic methods
 extension LoginView {
     
     private func askValidation() {
@@ -95,6 +83,7 @@ extension LoginView {
                 self.authenticationFailed(missingContent: true); return
                 
         }
+        
         self.delegate.didPressLogin(withEmail: email, andPassword: password, completion: {
             switch self.delegate.userIsValidated {
             case true: self.userAuthenticated()
