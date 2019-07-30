@@ -1,6 +1,0 @@
-framework module Pods_Wadmin {
-  umbrella header "Pods-Wadmin-umbrella.h"
-
-  export *
-  module * { export * }
-}
