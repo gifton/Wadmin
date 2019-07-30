@@ -19,6 +19,7 @@ class WesaturateAPI {
     private static let headers: HTTPHeaders = [ "Content-Type": "application/x-www-form-urlencoded" ]
     
     public static var meURL: URL = URL(string: WesaturateAPI._base + WesaturateAPI.me)!
+    public static var photosForReview: URL = URL(string: WesaturateAPI._base + "admin/review_photos?per_page=1000")!
     // login: put
     public func login(withEmail email: String, andPassword password: String) {
         group?.enter()

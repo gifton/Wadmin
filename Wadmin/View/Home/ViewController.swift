@@ -9,21 +9,32 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let nView = HomeView(withModel: HomeViewModel())
-        nView.logoutLabel.addTapGestureRecognizer(action: logout)
-        view = nView
+    
+    init(withModel model: HomeViewModel) {
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
+        let home = HomeView()
+        home.logoutLabel.addTapGestureRecognizer(action: logout)
+        model.countLabel = home.counter.indicator
+        view = home
+    }
+    
+    var model: HomeViewModel
+    var count: Int = 0
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func logout() {
         print("logging out")
         if WesaturateAPI.logout() {
             print("you have been logged out!")
+            navigationController?.popToViewController(LoginController(withModel: LoginViewModel()), animated: true)
         } else {
             print("issue logging out")
         }
     }
+    
+    
 }
 

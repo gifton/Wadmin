@@ -12,10 +12,21 @@ import UIKit
 class HomeViewModel: NSObject {
     override init() {
         super.init()
-        getAnalytics()
+        getAnalytics();
     }
     
-    var homeAnalytics: HomeAnalytics? 
+    var homeAnalytics: HomeAnalytics?
+    var reviewCount: Int = 0 {
+        didSet {
+            print("reviewCount set to: \(reviewCount)")
+            countLabel?.text = String(describing: reviewCount)
+        }
+    }
+    public var countLabel: UILabel? {
+        didSet {
+            getReviews()
+        }
+    }
     
     private func getAnalytics() {
         do {
@@ -24,6 +35,21 @@ class HomeViewModel: NSObject {
         } catch {
             print(error)
         }
+    }
+    
+    
+    private func getReviews() {
+        do {
+            let photos = try Photos(fromURL: WesaturateAPI.photosForReview)
+            print(photos.count)
+            countLabel?.text = String(describing: photos.count)
+        } catch { print(error)}
+    }
+    
+    public func refresh(completion: () -> Void) {
+        getReviews()
+        getAnalytics()
+        completion()
     }
 }
 

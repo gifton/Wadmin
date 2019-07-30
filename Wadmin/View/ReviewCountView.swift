@@ -1,6 +1,9 @@
 
 import UIKit
 
+protocol ReviewCountDelegate {
+    func update(toCount: Int)
+}
 
 class ReviewCountView: UIView {
     init(withCount count: Int) {
@@ -13,11 +16,18 @@ class ReviewCountView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var count: Int
+    func update(toCount: Int) {
+        self.indicator.text = String(describing: toCount)
+    }
     
+    var count: Int {
+        didSet {
+            self.indicator.text = String(describing: count)
+        }
+    }
     
     // MARK: private variables
-    private let indicator = UILabel()
+    public let indicator = UILabel()
     private let toReviewLabel = UILabel()
     private let toReviewButton = UIButton()
     

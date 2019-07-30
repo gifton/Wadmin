@@ -12,15 +12,15 @@ import UIKit
 class HomeView: UIView {
 
     
-    init(withModel model: HomeViewModel) {
-        self.model = model
+    init() {
         super.init(frame: Device.frame)
         backgroundColor = .white
         styleView(); setViews()
         setReviewView()
     }
     
-    var model: HomeViewModel
+    public var counter = ReviewCountView(withCount: 0)
+    public var reviewCount: Int = 0
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -35,20 +35,15 @@ class HomeView: UIView {
     private let headBG = UIImageView()
     
     private func styleView() {
-        let defaults = UserDefaults.standard
-        let name = defaults.string(forKey: UserDefaults.Keys.userFirstName)
+        
         // title
         titleLabel.text = "Wesaturate"
         titleLabel.font = Device.font.title(ofSize: .max)
         titleLabel.sizeToFit()
-        // adminf
+        // admin
         adminLabel.text = "Admin"
         adminLabel.font = Device.font.mediumTitle()
         adminLabel.sizeToFit()
-        // welcome
-        welcomeLabel.text = "Welcome, \(name)"
-        welcomeLabel.font = Device.font.mediumTitle(ofSize: .large)
-        welcomeLabel.sizeToFit()
         // refresh
         refreshButton.setImage(#imageLiteral(resourceName: "refresh"), for: .normal)
         // logout
@@ -58,6 +53,14 @@ class HomeView: UIView {
         logoutLabel.sizeToFit()
         // bg
         headBG.image = #imageLiteral(resourceName: "bg1")
+        
+        let defaults = UserDefaults.standard
+        guard let name = defaults.string(forKey: UserDefaults.Keys.userFirstName) else { return }
+        
+        // welcome
+        welcomeLabel.text = "Welcome, \(name)"
+        welcomeLabel.font = Device.font.mediumTitle(ofSize: .large)
+        welcomeLabel.sizeToFit()
     }
     
     private func setViews() {
@@ -82,7 +85,6 @@ class HomeView: UIView {
     }
     
     private func setReviewView() {
-        let counter = ReviewCountView(withCount: 29)
         counter.frame.origin = CGPoint(x: Device.padding.large.rawValue, y: headBG.bottom + 15)
         addSubview(counter)
     }

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        resetCredentials()
+//        resetCredentials()
         window = UIWindow(frame: Device.frame)
         window?.makeKeyAndVisible()
         let nav = UINavigationController(rootViewController: isUsersFirstTime())
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         if defaults.string(forKey: UserDefaults.Keys.authenticated) == UserDefaults.authenticated.authenticated.rawValue {
             print("user authenticated")
-            return ViewController()
+            return ViewController(withModel: HomeViewModel())
         }
         print("user NOT authenticated")
         defaults.setValue(UserDefaults.authenticated.authenticated.rawValue, forKey: UserDefaults.Keys.authenticated)
@@ -64,7 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func resetCredentials() {
         let defaults = UserDefaults.standard
         defaults.setValue(UserDefaults.authenticated.notAuthenticated.rawValue, forKey: UserDefaults.Keys.authenticated)
-        print(defaults.object(forKey: UserDefaults.Keys.authenticated) as Any)
     }
 }
 

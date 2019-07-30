@@ -15,7 +15,6 @@ class LoginController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         loginView = LoginView(withDelegate: self)
-        
         view = loginView
         
     }
@@ -40,7 +39,7 @@ extension LoginController: LoginDelegate {
             if self.userIsValidated {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                    self.navigationController?.pushViewController(ViewController(), animated: false)
+                    self.navigationController?.pushViewController(ViewController(withModel: HomeViewModel()), animated: false)
                 })
             }
             
@@ -61,9 +60,9 @@ extension LoginController: LoginDelegate {
                 do {
                     let me = try Me(fromURL: WesaturateAPI.meURL)
                     if me.admin {
-                        UserDefaults.setValue(me.firstName, forKey: UserDefaults.Keys.userFirstName)
-                        UserDefaults.setValue(me.lastName, forKey: UserDefaults.Keys.userLastName)
-                        UserDefaults.setValue(me.email, forKey: UserDefaults.Keys.userEmail)
+                        UserDefaults.standard.setValue(me.firstName, forKey: UserDefaults.Keys.userFirstName)
+                        UserDefaults.standard.setValue(me.lastName, forKey: UserDefaults.Keys.userLastName)
+                        UserDefaults.standard.setValue(me.email, forKey: UserDefaults.Keys.userEmail)
                         print("admin info set")
                         return true
                     }
