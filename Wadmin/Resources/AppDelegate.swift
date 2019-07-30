@@ -15,7 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        resetCredentials()
+        window = UIWindow(frame: Device.frame)
+        window?.makeKeyAndVisible()
+        let nav = UINavigationController(rootViewController: isUsersFirstTime())
+        nav.isNavigationBarHidden = true
+        window?.rootViewController = nav
+        
         return true
     }
 
@@ -40,7 +46,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    func isUsersFirstTime() -> UIViewController {
+        //defaults handle thought andentry ID validation
+        //check to see if a thought has ever been made, if so, defaults will have updated to a non-zero num
+        //otherwise set defaults to 1
+        let defaults = UserDefaults.standard
+        if defaults.string(forKey: UserDefaults.Keys.authenticated) == UserDefaults.authenticated.authenticated.rawValue {
+            print("user authenticated")
+            return ViewController()
+        }
+        print("user NOT authenticated")
+        defaults.setValue(UserDefaults.authenticated.authenticated.rawValue, forKey: UserDefaults.Keys.authenticated)
+        
+        return LoginController(withModel: LoginViewModel())
+    }
 
-
+    func resetCredentials() {
+        let defaults = UserDefaults.standard
+        defaults.setValue(UserDefaults.authenticated.notAuthenticated.rawValue, forKey: UserDefaults.Keys.authenticated)
+        print(defaults.object(forKey: UserDefaults.Keys.authenticated) as Any)
+    }
 }
 
