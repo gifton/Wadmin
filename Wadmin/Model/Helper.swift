@@ -12,9 +12,9 @@ extension URLSession {
         }
     }
     
-//    func photoTask(with url: URL, completionHandler: @escaping (Photo?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-//        return self.codableTask(with: url, completionHandler: completionHandler)
-//    }
+    func photoTask(with url: URL, completionHandler: @escaping (Photo?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        return self.codableTask(with: url, completionHandler: completionHandler)
+    }
 }
 
 // MARK: - Helper functions for creating encoders and decoders

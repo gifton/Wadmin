@@ -30,6 +30,12 @@
 		D716BCF422F0265C009156AE /* WesaturateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BCF322F0265C009156AE /* WesaturateAPI.swift */; };
 		D716BCF622F02698009156AE /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BCF522F02698009156AE /* Me.swift */; };
 		D716BCF822F02767009156AE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BCF722F02767009156AE /* Helper.swift */; };
+		D716BCFA22F0283A009156AE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BCF922F0283A009156AE /* Photo.swift */; };
+		D716BCFC22F0283F009156AE /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BCFB22F0283F009156AE /* Photos.swift */; };
+		D716BCFE22F02844009156AE /* Exif.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BCFD22F02844009156AE /* Exif.swift */; };
+		D716BD0222F02873009156AE /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0122F02873009156AE /* Links.swift */; };
+		D716BD0422F02881009156AE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0322F02881009156AE /* User.swift */; };
+		D716BD0722F0291D009156AE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0622F0291D009156AE /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +65,12 @@
 		D716BCF322F0265C009156AE /* WesaturateAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WesaturateAPI.swift; sourceTree = "<group>"; };
 		D716BCF522F02698009156AE /* Me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
 		D716BCF722F02767009156AE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		D716BCF922F0283A009156AE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		D716BCFB22F0283F009156AE /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		D716BCFD22F02844009156AE /* Exif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exif.swift; sourceTree = "<group>"; };
+		D716BD0122F02873009156AE /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
+		D716BD0322F02881009156AE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D716BD0622F0291D009156AE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		F7721947747D64E67D2CFA7E /* Pods_Wadmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wadmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -108,7 +120,6 @@
 				D716BCD122F01C9D009156AE /* Resources */,
 				D716BCD022F01C96009156AE /* Model */,
 				D716BCCF22F01C8D009156AE /* Helpers */,
-				D716BCBF22F00C3E009156AE /* ViewController.swift */,
 				D716BCC922F00C3F009156AE /* Info.plist */,
 			);
 			path = Wadmin;
@@ -128,8 +139,13 @@
 		D716BCD022F01C96009156AE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D716BCF522F02698009156AE /* Me.swift */,
 				D716BCF722F02767009156AE /* Helper.swift */,
+				D716BCF522F02698009156AE /* Me.swift */,
+				D716BD0322F02881009156AE /* User.swift */,
+				D716BCF922F0283A009156AE /* Photo.swift */,
+				D716BD0122F02873009156AE /* Links.swift */,
+				D716BCFB22F0283F009156AE /* Photos.swift */,
+				D716BCFD22F02844009156AE /* Exif.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,11 +187,29 @@
 		D716BCE822F025D1009156AE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D716BD0522F02916009156AE /* Login */,
+				D716BD0822F02929009156AE /* Home */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D716BD0522F02916009156AE /* Login */ = {
+			isa = PBXGroup;
+			children = (
 				D716BCE922F025DB009156AE /* LoginController.swift */,
 				D716BCEB22F025EE009156AE /* LoginView.swift */,
 				D716BCED22F025F9009156AE /* LoginDelegate.swift */,
 			);
-			path = View;
+			path = Login;
+			sourceTree = "<group>";
+		};
+		D716BD0822F02929009156AE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D716BD0622F0291D009156AE /* HomeView.swift */,
+				D716BCBF22F00C3E009156AE /* ViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		FBDF038230580A04FBC99D9A /* Pods */ = {
@@ -310,10 +344,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D716BD0422F02881009156AE /* User.swift in Sources */,
+				D716BCFA22F0283A009156AE /* Photo.swift in Sources */,
 				D716BCE522F024F9009156AE /* DateFormatter.swift in Sources */,
 				D716BCF422F0265C009156AE /* WesaturateAPI.swift in Sources */,
 				D716BCEE22F025F9009156AE /* LoginDelegate.swift in Sources */,
 				D716BCD522F023CD009156AE /* UIView.swift in Sources */,
+				D716BD0722F0291D009156AE /* HomeView.swift in Sources */,
 				D716BCF022F02629009156AE /* UITextField.swift in Sources */,
 				D716BCD922F02419009156AE /* CGRect.swift in Sources */,
 				D716BCEA22F025DB009156AE /* LoginController.swift in Sources */,
@@ -324,7 +361,10 @@
 				D716BCBE22F00C3E009156AE /* AppDelegate.swift in Sources */,
 				D716BCEC22F025EE009156AE /* LoginView.swift in Sources */,
 				D716BCE322F024E9009156AE /* Abbreviation.swift in Sources */,
+				D716BD0222F02873009156AE /* Links.swift in Sources */,
 				D716BCF222F0263B009156AE /* LoginViewModel+Delegate.swift in Sources */,
+				D716BCFC22F0283F009156AE /* Photos.swift in Sources */,
+				D716BCFE22F02844009156AE /* Exif.swift in Sources */,
 				D716BCDF22F02497009156AE /* UIImage.swift in Sources */,
 				D716BCE122F024D0009156AE /* Defaults.swift in Sources */,
 				D716BCDD22F02474009156AE /* UICollectionView.swift in Sources */,
