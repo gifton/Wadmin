@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ImageCardViewModel: NSObject {
+class ReviewCardViewModel: NSObject {
     init(withPhoto photo: Photo) {
         self.photo = photo
         super.init()
@@ -10,7 +10,7 @@ class ImageCardViewModel: NSObject {
     private var photo: Photo
     
     public var imageLink: URL {
-        return URL(string: photo.links.medium)!
+        return URL(string: photo.links.small)!
     }
     public var dimensions: String {
         return "\(photo.height) x \(photo.width)"
@@ -22,9 +22,12 @@ class ImageCardViewModel: NSObject {
         return photo.id
     }
     
-    func review(_ review: Review) {
-        WesaturateAPI.reviewPhoto(withID: photo.id, review: review) { (true) in
-            print("worked!")
+    func review(_ review: Review) -> Bool {
+        var complete = false
+        WesaturateAPI.reviewPhoto(withID: id, review: review) { (success) in
+            print("worked?: \(success)")
+            complete = success
         }
+        return complete
     }
 }

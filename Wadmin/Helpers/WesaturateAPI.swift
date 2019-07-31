@@ -72,11 +72,12 @@ class WesaturateAPI {
     }
     
     public static func reviewPhoto(withID id: String, review: Review, completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: WesaturateAPI._base + "admin/\(id)/") else { return }
+        guard let url = URL(string: WesaturateAPI._base + "admin/review_photos/\(id)/") else { return }
+        print(url)
         let parameters = [
-            "admin_review" : review.rawValue
+            "state" : review.rawValue
         ]
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: WesaturateAPI.headers).response { (response) in
+        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: WesaturateAPI.headers).response { (response) in
             if response.error != nil {
                 completion(true)
             } else { completion(false) }

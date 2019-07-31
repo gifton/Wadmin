@@ -2,26 +2,22 @@
 import UIKit
 import Kingfisher
 
-class ImageCard: CardView {
+class ReviewCard: CardView {
     
-    init(frame: CGRect, model: ImageCardViewModel) {
-        ID = model.id
-        super.init(frame: frame)
+    override init(frame: CGRect, model: ReviewCardViewModel) {
+        super.init(frame: frame, model: model)
         
         // image
-        
         let imageView = UIImageView()
         imageView.kf.setImage(with: model.imageLink)
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = Device.colors.primaryPurple
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
-        
         imageView.frame = CGRect(x: 12, y: 12, width: self.frame.width - 24, height: self.frame.height - 103)
         self.addSubview(imageView)
         
         // dummy text boxes
-        
         let textBox1 = UIView()
         textBox1.backgroundColor = Device.colors.primaryPurple
         textBox1.layer.cornerRadius = 12
@@ -39,7 +35,9 @@ class ImageCard: CardView {
         self.addSubview(textBox2)
     }
     
-    public var ID: String
+    func sendAdminReview() -> Bool {
+        return sendReview()
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

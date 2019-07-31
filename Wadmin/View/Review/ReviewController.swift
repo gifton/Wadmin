@@ -4,7 +4,7 @@ import UIKit
 class ReviewController: UIViewController {
     
     /// Data structure for custom cards - in this example, we're using an array of ImageCards
-    var cards = [ImageCard]() {
+    var cards = [ReviewCard]() {
         didSet {
             reactLabel.text = String(describing: cards.count)
             print(cards.count)
@@ -27,8 +27,8 @@ class ReviewController: UIViewController {
         // of course, you could always add new cards to self.cards and call layoutCards() again
         if let photos = photos {
             for photo in photos {
-                let card = ImageCard(frame: CGRect(x: 0, y: 0, width: view.width - 60, height: view.height * 0.6),
-                                     model: ImageCardViewModel(withPhoto: photo))
+                let card = ReviewCard(frame: CGRect(x: 0, y: 0, width: view.width - 60, height: view.height * 0.6),
+                                     model: ReviewCardViewModel(withPhoto: photo))
                 cards.append(card)
             }
         }
@@ -49,7 +49,6 @@ class ReviewController: UIViewController {
     }
     
     /// Scale and alpha of successive cards visible to the user
-//    let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (1, 1), (1, 1), (1, 1)]
     let cardInteritemSpacing: CGFloat = 15
     
@@ -151,8 +150,11 @@ class ReviewController: UIViewController {
     
     /// Whenever the front card is off the screen, this method is called in order to remove the card from our data structure and from the view.
     func removeOldFrontCard() {
-        cards[0].removeFromSuperview()
-        cards.remove(at: 0)
+        if cards[0].sendReview() {
+            cards[0].removeFromSuperview()
+            cards.remove(at: 0)
+        }
+        
     }
     
     /// UIKit dynamics variables that we need references to.
@@ -179,35 +181,36 @@ class ReviewController: UIViewController {
             dynamicAnimator.addBehavior(cardAttachmentBehavior)
         case .changed:
             cardAttachmentBehavior.anchorPoint = panLocationInView
-            if cards[0].center.x > (self.view.center.x + requiredOffsetFromCenter) {
-                if cards[0].center.y < (self.view.center.y - optionLength) {
-                    cards[0].showOptionLabel(option: .like1)
+            let card = cards[0]
+            if card.center.x > (self.view.center.x + requiredOffsetFromCenter) {
+                if card.center.y < (self.view.center.y - optionLength) {
+                    card.showOptionLabel(option: .like1)
                     emojiOptionsOverlay.showEmoji(for: .like1)
                     
-                    if cards[0].center.y < (self.view.center.y - optionLength - optionLength) {
+                    if card.center.y < (self.view.center.y - optionLength - optionLength) {
                         emojiOptionsOverlay.updateHeartEmoji(isFilled: true, isFocused: true)
                     } else {
                         emojiOptionsOverlay.updateHeartEmoji(isFilled: true, isFocused: false)
                     }
                     
                 } else {
-                    cards[0].showOptionLabel(option: .like2)
+                    card.showOptionLabel(option: .like2)
                     emojiOptionsOverlay.showEmoji(for: .like2)
                     emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
                 }
-            } else if cards[0].center.x < (self.view.center.x - requiredOffsetFromCenter) {
+            } else if card.center.x < (self.view.center.x - requiredOffsetFromCenter) {
                 
                 emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
                 
-                if cards[0].center.y < (self.view.center.y - optionLength) {
-                    cards[0].showOptionLabel(option: .dislike1)
+                if card.center.y < (self.view.center.y - optionLength) {
+                    card.showOptionLabel(option: .dislike1)
                     emojiOptionsOverlay.showEmoji(for: .dislike1)
                 } else {
-                    cards[0].showOptionLabel(option: .dislike2)
+                    card.showOptionLabel(option: .dislike2)
                     emojiOptionsOverlay.showEmoji(for: .dislike2)
                 }
             } else {
-                cards[0].hideOptionLabel()
+                card.hideOptionLabel()
                 emojiOptionsOverlay.hideFaceEmojis()
             }
             
@@ -226,20 +229,17 @@ class ReviewController: UIViewController {
                 newTransform = newTransform.rotated(by: currentAngle)
                 
                 let card = self.cards[0]
-                // call network, wait for success
-                if review(forID: card.ID, decision: .best) {
-                    UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
-                        card.center = heartCenter
-                        card.transform = newTransform
-                        card.alpha = 0.5
-                    }, completion: { (_) in
-                        self.emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
-                        self.removeOldFrontCard()
-                    })
-                    
-                    emojiOptionsOverlay.hideFaceEmojis()
-                    showNextCard()
-                }
+                UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
+                    card.center = heartCenter
+                    card.transform = newTransform
+                    card.alpha = 0.5
+                }, completion: { (_) in
+                    self.emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
+                    self.removeOldFrontCard()
+                })
+                
+                emojiOptionsOverlay.hideFaceEmojis()
+                showNextCard()
                 
             } else {
                 emojiOptionsOverlay.hideFaceEmojis()
@@ -281,15 +281,6 @@ class ReviewController: UIViewController {
         default:
             break
         }
-    }
-    
-    // after a review decision is made, use model to make api call
-    func review(forID id: String, decision: Review) -> Bool {
-        var out = true
-        WesaturateAPI.reviewPhoto(withID: id, review: decision) { (success) in
-            out = success
-        }
-        return out
     }
     
     /// This function continuously checks to see if the card's center is on the screen anymore. If it finds that the card's center is not on screen, then it triggers removeOldFrontCard() which removes the front card from the data structure and from the view.

@@ -7,14 +7,25 @@ public enum CardOption: String {
     
     case dislike1 = "Delete"
     case dislike2 = "Reject"
+    var review: Review {
+        switch self {
+        case .dislike1: return .delete
+        case .dislike2: return .reject
+        case .like1: return .best
+        case .like2: return .approve
+        }
+    }
 }
 
 class CardView: UIView {
     
     var greenLabel: CardViewLabel!
     var redLabel: CardViewLabel!
+    private var model: ReviewCardViewModel
+    private var review: Review?
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, model: ReviewCardViewModel) {
+        self.model = model
         super.init(frame: frame)
         
         // card style
@@ -40,6 +51,7 @@ class CardView: UIView {
     }
     
     func showOptionLabel(option: CardOption) {
+        review = option.review
         if option == .like1 || option == .like2 {
             
             greenLabel.text = option.rawValue
@@ -114,6 +126,10 @@ class CardView: UIView {
         }
     }
     
+    public func sendReview() -> Bool {
+        guard let review = review else { return false }
+        return model.review(review)
+    }
 }
 
 class CardViewLabel: UILabel {

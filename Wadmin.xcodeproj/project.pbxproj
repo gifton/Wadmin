@@ -43,8 +43,8 @@
 		D716BD1422F0F0BE009156AE /* HomeAnalyticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD1322F0F0BE009156AE /* HomeAnalyticView.swift */; };
 		D7FF294622F10ABE00970436 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294522F10ABE00970436 /* ReviewController.swift */; };
 		D7FF294A22F10EBE00970436 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294922F10EBE00970436 /* ReviewViewModel.swift */; };
-		D7FF294C22F10EC800970436 /* ReviewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294B22F10EC800970436 /* ReviewCellViewModel.swift */; };
-		D7FF294E22F1194700970436 /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294D22F1194700970436 /* ImageCard.swift */; };
+		D7FF294C22F10EC800970436 /* ReviewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294B22F10EC800970436 /* ReviewCardViewModel.swift */; };
+		D7FF294E22F1194700970436 /* ReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294D22F1194700970436 /* ReviewCard.swift */; };
 		D7FF295022F1196500970436 /* EmojiOptionsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294F22F1196500970436 /* EmojiOptionsOverlay.swift */; };
 		D7FF295222F1198000970436 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF295122F1198000970436 /* CardView.swift */; };
 /* End PBXBuildFile section */
@@ -89,8 +89,8 @@
 		D716BD1322F0F0BE009156AE /* HomeAnalyticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAnalyticView.swift; sourceTree = "<group>"; };
 		D7FF294522F10ABE00970436 /* ReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
 		D7FF294922F10EBE00970436 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
-		D7FF294B22F10EC800970436 /* ReviewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCellViewModel.swift; sourceTree = "<group>"; };
-		D7FF294D22F1194700970436 /* ImageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
+		D7FF294B22F10EC800970436 /* ReviewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCardViewModel.swift; sourceTree = "<group>"; };
+		D7FF294D22F1194700970436 /* ReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCard.swift; sourceTree = "<group>"; };
 		D7FF294F22F1196500970436 /* EmojiOptionsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiOptionsOverlay.swift; sourceTree = "<group>"; };
 		D7FF295122F1198000970436 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F7721947747D64E67D2CFA7E /* Pods_Wadmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wadmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,7 +205,7 @@
 				D716BCF122F0263B009156AE /* LoginViewModel+Delegate.swift */,
 				D716BD0F22F0D00F009156AE /* HomeViewModel.swift */,
 				D7FF294922F10EBE00970436 /* ReviewViewModel.swift */,
-				D7FF294B22F10EC800970436 /* ReviewCellViewModel.swift */,
+				D7FF294B22F10EC800970436 /* ReviewCardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -246,7 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				D7FF294522F10ABE00970436 /* ReviewController.swift */,
-				D7FF294D22F1194700970436 /* ImageCard.swift */,
+				D7FF294D22F1194700970436 /* ReviewCard.swift */,
 				D7FF294F22F1196500970436 /* EmojiOptionsOverlay.swift */,
 				D7FF295122F1198000970436 /* CardView.swift */,
 			);
@@ -405,7 +405,7 @@
 				D716BD1022F0D00F009156AE /* HomeViewModel.swift in Sources */,
 				D716BCBE22F00C3E009156AE /* AppDelegate.swift in Sources */,
 				D716BCEC22F025EE009156AE /* LoginView.swift in Sources */,
-				D7FF294E22F1194700970436 /* ImageCard.swift in Sources */,
+				D7FF294E22F1194700970436 /* ReviewCard.swift in Sources */,
 				D716BD1222F0EC0D009156AE /* SingleAnalyticView.swift in Sources */,
 				D716BCE322F024E9009156AE /* Abbreviation.swift in Sources */,
 				D7FF294A22F10EBE00970436 /* ReviewViewModel.swift in Sources */,
@@ -420,7 +420,7 @@
 				D716BCE122F024D0009156AE /* Defaults.swift in Sources */,
 				D716BCDD22F02474009156AE /* UICollectionView.swift in Sources */,
 				D716BCF622F02698009156AE /* Me.swift in Sources */,
-				D7FF294C22F10EC800970436 /* ReviewCellViewModel.swift in Sources */,
+				D7FF294C22F10EC800970436 /* ReviewCardViewModel.swift in Sources */,
 				D716BCD722F023D5009156AE /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
