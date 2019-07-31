@@ -20,19 +20,15 @@ class ReviewController: UIViewController {
     init(withPhotos photos: Photos?) {
         super.init(nibName: nil, bundle: nil)
         
-        self.view.backgroundColor = UIColor(red:0.38, green:0.44, blue:0.99, alpha:0.5)
+        self.view.backgroundColor = Device.colors.darkGray
         
         
         // 1. create a deck of cards
         // of course, you could always add new cards to self.cards and call layoutCards() again
-        if let count = photos?.count {
-            for _ in 1...count {
-                let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
-                cards.append(card)
-            }
-        } else {
-            for _ in 1...20 {
-                let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
+        if let photos = photos {
+            for photo in photos {
+                let card = ImageCard(frame: CGRect(x: 0, y: 0, width: view.width - 60, height: view.height * 0.6),
+                                     model: ImageCardViewModel(withPhoto: photo))
                 cards.append(card)
             }
         }
@@ -53,7 +49,8 @@ class ReviewController: UIViewController {
     }
     
     /// Scale and alpha of successive cards visible to the user
-    let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
+//    let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
+    let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (1, 1), (1, 1), (1, 1)]
     let cardInteritemSpacing: CGFloat = 15
     
     /// Set up the frames, alphas, and transforms of the first 4 cards on the screen
@@ -66,7 +63,7 @@ class ReviewController: UIViewController {
         firstCard.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleCardPan)))
         
         // the next 3 cards in the deck
-        for i in 1...3 {
+        for i in 1...2 {
             if i > (cards.count - 1) { continue }
             
             let card = cards[i]
@@ -76,15 +73,13 @@ class ReviewController: UIViewController {
             // here we're just getting some hand-picked vales from cardAttributes (an array of tuples)
             // which will tell us the attributes of each card in the 4 cards visible to the user
             let downscale = cardAttributes[i].downscale
-            let alpha = cardAttributes[i].alpha
             card.transform = CGAffineTransform(scaleX: downscale, y: downscale)
-            card.alpha = alpha
             
             // position each card so there's a set space (cardInteritemSpacing) between each card, to give it a fanned out look
             card.center.x = self.view.center.x
             card.frame.origin.y = cards[0].frame.origin.y - (CGFloat(i) * cardInteritemSpacing)
             // workaround: scale causes heights to skew so compensate for it with some tweaking
-            if i == 3 {
+            if i == 2 {
                 card.frame.origin.y += 1.5
             }
             
@@ -100,14 +95,12 @@ class ReviewController: UIViewController {
     func showNextCard() {
         let animationDuration: TimeInterval = 0.2
         // 1. animate each card to move forward one by one
-        for i in 1...3 {
+        for i in 1...2 {
             if i > (cards.count - 1) { continue }
             let card = cards[i]
             let newDownscale = cardAttributes[i - 1].downscale
-            let newAlpha = cardAttributes[i - 1].alpha
             UIView.animate(withDuration: animationDuration, delay: (TimeInterval(i - 1) * (animationDuration / 2)), usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
                 card.transform = CGAffineTransform(scaleX: newDownscale, y: newDownscale)
-                card.alpha = newAlpha
                 if i == 1 {
                     card.center = self.view.center
                 } else {
@@ -129,16 +122,17 @@ class ReviewController: UIViewController {
             }
             return
         }
-        let newCard = cards[4]
+        let newCard = cards[2]
         newCard.layer.zPosition = CGFloat(cards.count - 4)
-        let downscale = cardAttributes[3].downscale
-        let alpha = cardAttributes[3].alpha
+        let downscale = cardAttributes[2].downscale
+        let alpha = cardAttributes[2].alpha
         
         // initial state of new card
         newCard.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         newCard.alpha = 0
         newCard.center.x = self.view.center.x
         newCard.frame.origin.y = cards[1].frame.origin.y - (4 * cardInteritemSpacing)
+        newCard.layer.zPosition = 0
         self.view.addSubview(newCard)
         
         // animate to end state of new card
@@ -231,17 +225,21 @@ class ReviewController: UIViewController {
                 newTransform = newTransform.scaledBy(x: 0.05, y: 0.05)
                 newTransform = newTransform.rotated(by: currentAngle)
                 
-                UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
-                    self.cards[0].center = heartCenter
-                    self.cards[0].transform = newTransform
-                    self.cards[0].alpha = 0.5
-                }, completion: { (_) in
-                    self.emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
-                    self.removeOldFrontCard()
-                })
-                
-                emojiOptionsOverlay.hideFaceEmojis()
-                showNextCard()
+                let card = self.cards[0]
+                // call network, wait for success
+                if review(forID: card.ID, decision: .best) {
+                    UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut], animations: {
+                        card.center = heartCenter
+                        card.transform = newTransform
+                        card.alpha = 0.5
+                    }, completion: { (_) in
+                        self.emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
+                        self.removeOldFrontCard()
+                    })
+                    
+                    emojiOptionsOverlay.hideFaceEmojis()
+                    showNextCard()
+                }
                 
             } else {
                 emojiOptionsOverlay.hideFaceEmojis()
@@ -273,9 +271,10 @@ class ReviewController: UIViewController {
                     itemBehavior.allowsRotation = true
                     itemBehavior.addAngularVelocity(CGFloat(angular), for: cards[0])
                     dynamicAnimator.addBehavior(itemBehavior)
-                    
                     showNextCard()
                     hideFrontCard()
+                    
+                    
                     
                 }
             }
@@ -284,32 +283,32 @@ class ReviewController: UIViewController {
         }
     }
     
+    // after a review decision is made, use model to make api call
+    func review(forID id: String, decision: Review) -> Bool {
+        var out = true
+        WesaturateAPI.reviewPhoto(withID: id, review: decision) { (success) in
+            out = success
+        }
+        return out
+    }
+    
     /// This function continuously checks to see if the card's center is on the screen anymore. If it finds that the card's center is not on screen, then it triggers removeOldFrontCard() which removes the front card from the data structure and from the view.
     var cardIsHiding = false
     func hideFrontCard() {
-        if #available(iOS 10.0, *) {
-            var cardRemoveTimer: Timer? = nil
-            cardRemoveTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] (_) in
-                guard self != nil else { return }
-                if !(self!.view.bounds.contains(self!.cards[0].center)) {
-                    cardRemoveTimer!.invalidate()
-                    self?.cardIsHiding = true
-                    UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
-                        self?.cards[0].alpha = 0.0
-                    }, completion: { (_) in
-                        self?.removeOldFrontCard()
-                        self?.cardIsHiding = false
-                    })
-                }
-            })
-        } else {
-            // fallback for earlier versions
-            UIView.animate(withDuration: 0.2, delay: 1.5, options: [.curveEaseIn], animations: {
-                self.cards[0].alpha = 0.0
-            }, completion: { (_) in
-                self.removeOldFrontCard()
-            })
-        }
+        var cardRemoveTimer: Timer? = nil
+        cardRemoveTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] (_) in
+            guard self != nil else { return }
+            if !(self!.view.bounds.contains(self!.cards[0].center)) {
+                cardRemoveTimer!.invalidate()
+                self?.cardIsHiding = true
+                UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
+                    self?.cards[0].alpha = 0.0
+                }, completion: { (_) in
+                    self?.removeOldFrontCard()
+                    self?.cardIsHiding = false
+                })
+            }
+        })
     }
 }
 

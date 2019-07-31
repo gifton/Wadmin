@@ -33,7 +33,13 @@ class ViewController: UIViewController {
     func logout() {
         print("logging out")
         if WesaturateAPI.logout() {
-            navigationController?.popToViewController(LoginController(withModel: LoginViewModel()), animated: true)
+            let defaults = UserDefaults.standard
+            defaults.setValue(nil, forKey: UserDefaults.Keys.userFirstName)
+            defaults.setValue(nil, forKey: UserDefaults.Keys.userLastName)
+            defaults.setValue(nil, forKey: UserDefaults.Keys.userEmail)
+            defaults.setValue(UserDefaults.authenticated.notAuthenticated.rawValue, forKey: UserDefaults.Keys.authenticated)
+            print("admin info reset")
+            navigationController?.pushViewController(LoginController(withModel: LoginViewModel()), animated: false)
         }
     }
     

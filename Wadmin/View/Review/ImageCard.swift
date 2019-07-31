@@ -1,16 +1,19 @@
 
 import UIKit
+import Kingfisher
 
 class ImageCard: CardView {
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, model: ImageCardViewModel) {
+        ID = model.id
         super.init(frame: frame)
         
         // image
         
         let imageView = UIImageView()
+        imageView.kf.setImage(with: model.imageLink)
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
+        imageView.backgroundColor = Device.colors.primaryPurple
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
         
@@ -20,7 +23,7 @@ class ImageCard: CardView {
         // dummy text boxes
         
         let textBox1 = UIView()
-        textBox1.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
+        textBox1.backgroundColor = Device.colors.primaryPurple
         textBox1.layer.cornerRadius = 12
         textBox1.layer.masksToBounds = true
         
@@ -28,13 +31,15 @@ class ImageCard: CardView {
         self.addSubview(textBox1)
         
         let textBox2 = UIView()
-        textBox2.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
+        textBox2.backgroundColor = Device.colors.primaryPurple
         textBox2.layer.cornerRadius = 12
         textBox2.layer.masksToBounds = true
         
         textBox2.frame = CGRect(x: 12, y: textBox1.frame.maxY + 10, width: 120, height: 24)
         self.addSubview(textBox2)
     }
+    
+    public var ID: String
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

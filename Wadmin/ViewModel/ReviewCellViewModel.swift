@@ -1,30 +1,30 @@
-//
-//  ReviewCellViewModel.swift
-//  Wadmin
-//
-//  Created by Dev on 7/30/19.
-//  Copyright © 2019 Wesaturate. All rights reserved.
-//
 
 import UIKit
 
-class ReviewCellVIewModel: NSObject {
-    init(withPhotos photos: Photos) {
-        self.photos = photos
+class ImageCardViewModel: NSObject {
+    init(withPhoto photo: Photo) {
+        self.photo = photo
         super.init()
     }
     
-    var photos: Photos
-    var count: Int { return photos.count }
+    private var photo: Photo
     
-    func approve(photoWithID id: String) {
-        
+    public var imageLink: URL {
+        return URL(string: photo.links.medium)!
+    }
+    public var dimensions: String {
+        return "\(photo.height) x \(photo.width)"
+    }
+    public var camType: String {
+        return photo.exif.model ?? "not available"
+    }
+    public var id: String {
+        return photo.id
     }
     
-    public func refresh() {
-        do {
-            photos = try Photos(fromURL: WesaturateAPI.photosForReview)
-        } catch { print(error) }
-        
+    func review(_ review: Review) {
+        WesaturateAPI.reviewPhoto(withID: photo.id, review: review) { (true) in
+            print("worked!")
+        }
     }
 }
