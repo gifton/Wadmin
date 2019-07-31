@@ -9,7 +9,7 @@ Wadmin relies in a minute amount of dependancies using cocoapods:
 * IQKeyboardManager - UI
 * AlamoFire - Networking
 
-To use the application, confirm you are set as an admin with (gifton)[https://github.com/gifton] or (kash)[https://github.com/kash].  Then login on the application to become authenticated
+To use the application, confirm you are set as an admin with (gifton) [https://github.com/gifton] or (kash) [https://github.com/kash].  Then login on the application to become authenticated
 
 To use you must have xcode 10.3 and swift 5.0.1, and (cocoapods)[https://cocoapods.org/]
 
