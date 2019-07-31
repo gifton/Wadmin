@@ -13,19 +13,23 @@ class ViewController: UIViewController {
     init(withModel model: HomeViewModel) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
-        let home = HomeView()
+        home = HomeView()
         
         home.logoutLabel.addTapGestureRecognizer(action: logout)
-        home.refreshButton.addTapGestureRecognizer(action: model.refresh)
         home.counter.addTapGestureRecognizer(action: showReviews)
         
         model.countLabel = home.counter.indicator
         model.homeAnalyticsView = home.analyticsView
         view = home
+        
+        refreshButton.addTapGestureRecognizer(action: refresh)
     }
-    
+    var home: HomeView!
     var model: HomeViewModel
     var count: Int = 0
+    var refreshButton: UIButton {
+        return home.refreshButton
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -47,6 +51,20 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(ReviewController(withPhotos: model.photos), animated: true)
     }
     
+    func refresh() {
+        print("refreshing")
+        refreshButton.addBounceAnimation()
+        model.refresh {
+            print("refresh confirmed in viewModel")
+        }
+    }
     
+    private func rotateView(targetView: UIView, duration: Double = 1.0) {
+        UIView.animate(withDuration: duration, delay: 0.0, options: .curveLinear, animations: {
+            targetView.transform = targetView.transform.rotated(by: CGFloat(Double.pi))
+        }) { finished in
+            self.rotateView(targetView: targetView, duration: duration)
+        }
+    }
 }
 

@@ -10,7 +10,7 @@ class ReviewCard: CardView {
         // image
         let imageView = UIImageView()
         imageView.kf.setImage(with: model.imageLink)
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = Device.colors.primaryPurple
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
@@ -33,10 +33,6 @@ class ReviewCard: CardView {
         
         textBox2.frame = CGRect(x: 12, y: textBox1.frame.maxY + 10, width: 120, height: 24)
         self.addSubview(textBox2)
-    }
-    
-    func sendAdminReview() -> Bool {
-        return sendReview()
     }
     
     required init?(coder aDecoder: NSCoder) {

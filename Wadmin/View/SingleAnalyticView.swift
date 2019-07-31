@@ -32,8 +32,11 @@ class SingleAnalyticView: UIView {
         titleLabel.textColor = .lightGray
         
         photo.contentMode = .scaleAspectFit
-        
-        stat.text = String(describing: analytic.stat)
+        var statText: String = String(describing: analytic.stat)
+        statText.removeAll { (char) -> Bool in
+            char.isNumber != true
+        }
+        stat.text = statText
         stat.font = Device.font.mediumTitle(ofSize: .large)
         stat.sizeToFit()
         switch analytic.category {

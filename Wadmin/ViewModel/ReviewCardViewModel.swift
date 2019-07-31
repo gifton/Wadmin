@@ -21,13 +21,13 @@ class ReviewCardViewModel: NSObject {
     public var id: String {
         return photo.id
     }
+    public var username: String {
+        return photo.user.username
+    }
     
-    func review(_ review: Review) -> Bool {
-        var complete = false
-        WesaturateAPI.reviewPhoto(withID: id, review: review) { (success) in
-            print("worked?: \(success)")
-            complete = success
+    func review(_ review: Review, completion: @escaping () -> Void) {
+        WesaturateAPI.reviewPhoto(withID: id, review: review) {
+            completion()
         }
-        return complete
     }
 }

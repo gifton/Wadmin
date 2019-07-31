@@ -126,9 +126,9 @@ class CardView: UIView {
         }
     }
     
-    public func sendReview() -> Bool {
-        guard let review = review else { return false }
-        return model.review(review)
+    public func sendReview(_ ifCompleted: @escaping () -> Void) {
+        guard let review = review else { return }
+        model.review(review, completion: ifCompleted)
     }
 }
 

@@ -71,16 +71,16 @@ class WesaturateAPI {
         }
     }
     
-    public static func reviewPhoto(withID id: String, review: Review, completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: WesaturateAPI._base + "admin/review_photos/\(id)/") else { return }
+    public static func reviewPhoto(withID id: String, review: Review, completion: @escaping () -> Void) {
+        guard let url = URL(string: WesaturateAPI._base + "admin/review_photos/\(id)") else { return }
         print(url)
         let parameters = [
             "state" : review.rawValue
         ]
-        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: WesaturateAPI.headers).response { (response) in
-            if response.error != nil {
-                completion(true)
-            } else { completion(false) }
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: WesaturateAPI.headers).response { (response) in
+            if response.error == nil {
+                completion()
+            }
         }
     }
 }
@@ -88,7 +88,7 @@ class WesaturateAPI {
 
 enum Review: String {
     case best = "best"
-    case approve = "approve"
+    case approve = "approved"
     case reject = "reject"
     case delete = "delete"
 }

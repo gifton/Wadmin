@@ -89,7 +89,15 @@ class HomeView: UIView {
     
     private func setReviewView() {
         counter.frame.origin = CGPoint(x: Device.padding.large.rawValue, y: headBG.bottom + 15)
+        counter.addTapGestureRecognizer(action: didSelectCounter)
         addSubview(counter)
+    }
+    
+    func didSelectCounter() {
+        UIView.animate(withDuration: 0.25) {
+            self.counter.indicator.frame = Device.frame
+        }
+        
     }
     
     private func setStats() {

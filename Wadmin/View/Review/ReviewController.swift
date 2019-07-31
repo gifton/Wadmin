@@ -150,11 +150,11 @@ class ReviewController: UIViewController {
     
     /// Whenever the front card is off the screen, this method is called in order to remove the card from our data structure and from the view.
     func removeOldFrontCard() {
-        if cards[0].sendReview() {
-            cards[0].removeFromSuperview()
-            cards.remove(at: 0)
+        cards[0].sendReview {
+            print("succesfully removed: from ReviewController")
+            self.cards[0].removeFromSuperview()
+            self.cards.remove(at: 0)
         }
-        
     }
     
     /// UIKit dynamics variables that we need references to.

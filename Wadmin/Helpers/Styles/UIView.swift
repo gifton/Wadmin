@@ -192,4 +192,16 @@ extension UIView {
         self.layer.shadowOpacity = 0.0
         self.layer.shadowRadius = 0.0
     }
+    
+    static var bounceAnimation: CAKeyframeAnimation = {
+        let bounceAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+        bounceAnimation.values = [1.0, 1.8, 0.7, 1.22, 1.0]
+        bounceAnimation.duration = TimeInterval(0.83)
+        bounceAnimation.calculationMode = CAAnimationCalculationMode.linear
+        return bounceAnimation
+    }()
+    
+    public func addBounceAnimation() {
+        layer.add(UIView.bounceAnimation, forKey: nil)
+    }
 }

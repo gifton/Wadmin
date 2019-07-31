@@ -53,12 +53,15 @@ class HomeViewModel: NSObject {
             let photos = try Photos(fromURL: WesaturateAPI.photosForReview)
             self.photos = photos
             countLabel?.text = String(describing: photos.count)
+            countLabel?.addBounceAnimation()
         } catch { print(error)}
     }
     
-    public func refresh() {
+    public func refresh(_ completion: () -> Void) {
         getReviews()
         getAnalytics()
+        
+        completion()
     }
 }
 
