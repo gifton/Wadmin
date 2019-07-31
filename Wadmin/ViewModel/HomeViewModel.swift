@@ -12,10 +12,13 @@ import UIKit
 class HomeViewModel: NSObject {
     override init() {
         super.init()
-        getAnalytics();
     }
     
-    var homeAnalytics: HomeAnalytics?
+    var homeAnalytics: HomeAnalytics? {
+        didSet {
+            homeAnalyticsView?.update(toStats: homeAnalytics!)
+        }
+    }
     var reviewCount: Int = 0 {
         didSet {
             print("reviewCount set to: \(reviewCount)")
@@ -28,6 +31,12 @@ class HomeViewModel: NSObject {
         }
     }
     
+    public var homeAnalyticsView: HomeAnalyticView? {
+        didSet {
+            getAnalytics()
+        }
+    }
+    
     private func getAnalytics() {
         do {
             let analytics = try Analytics(fromURL: URL(string: "https://api.wesaturate.com/admin/analytics")!)
@@ -37,19 +46,19 @@ class HomeViewModel: NSObject {
         }
     }
     
+    public var photos: Photos?
     
     private func getReviews() {
         do {
             let photos = try Photos(fromURL: WesaturateAPI.photosForReview)
-            print(photos.count)
+            self.photos = photos
             countLabel?.text = String(describing: photos.count)
         } catch { print(error)}
     }
     
-    public func refresh(completion: () -> Void) {
+    public func refresh() {
         getReviews()
         getAnalytics()
-        completion()
     }
 }
 
@@ -70,6 +79,11 @@ struct HomeAnalytics {
     var referral: Analytic
     var photos: Analytic
     var users: Analytic
+    
+    static var zero: HomeAnalytics {
+        let an = Analytic(stat: Stat.string("Not available"), category: Category.photos, name: "Not available")
+        return HomeAnalytics(referral: an, photos: an, users: an)
+    }
     
 }
 

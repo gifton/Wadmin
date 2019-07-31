@@ -17,10 +17,12 @@ class HomeView: UIView {
         backgroundColor = .white
         styleView(); setViews()
         setReviewView()
+        setStats()
     }
     
     public var counter = ReviewCountView(withCount: 0)
     public var reviewCount: Int = 0
+    public var analyticsView = HomeAnalyticView(withStats: HomeAnalytics.zero, point: .zero)
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -33,6 +35,7 @@ class HomeView: UIView {
     public let refreshButton = UIButton()
     public let logoutLabel = UILabel()
     private let headBG = UIImageView()
+    
     
     private func styleView() {
         
@@ -87,5 +90,10 @@ class HomeView: UIView {
     private func setReviewView() {
         counter.frame.origin = CGPoint(x: Device.padding.large.rawValue, y: headBG.bottom + 15)
         addSubview(counter)
+    }
+    
+    private func setStats() {
+        analyticsView = HomeAnalyticView(withStats: HomeAnalytics.zero, point: CGPoint(x: 0, y: counter.bottom + 25))
+        addSubview(analyticsView)
     }
 }

@@ -14,8 +14,13 @@ class ViewController: UIViewController {
         self.model = model
         super.init(nibName: nil, bundle: nil)
         let home = HomeView()
+        
         home.logoutLabel.addTapGestureRecognizer(action: logout)
+        home.refreshButton.addTapGestureRecognizer(action: model.refresh)
+        home.counter.addTapGestureRecognizer(action: showReviews)
+        
         model.countLabel = home.counter.indicator
+        model.homeAnalyticsView = home.analyticsView
         view = home
     }
     
@@ -28,11 +33,12 @@ class ViewController: UIViewController {
     func logout() {
         print("logging out")
         if WesaturateAPI.logout() {
-            print("you have been logged out!")
             navigationController?.popToViewController(LoginController(withModel: LoginViewModel()), animated: true)
-        } else {
-            print("issue logging out")
         }
+    }
+    
+    func showReviews() {
+        navigationController?.pushViewController(ReviewController(withPhotos: model.photos), animated: true)
     }
     
     

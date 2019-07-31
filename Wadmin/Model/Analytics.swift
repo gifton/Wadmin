@@ -73,7 +73,18 @@ enum Category: String, Codable {
     case users = "Users"
 }
 
-enum Stat: Codable {
+enum Stat: Codable{
+    
+    static func + (lhs: Stat, rhs: Stat) -> Stat {
+        return Stat.integer(0)
+    }
+    
+    static func -= (lhs: inout Stat, rhs: Stat) { }
+    
+    typealias Words = Int
+    
+    typealias Magnitude = Int
+    
     case integer(Int)
     case string(String)
     

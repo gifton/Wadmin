@@ -39,6 +39,15 @@
 		D716BD0A22F0A4E1009156AE /* ReviewCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0922F0A4E1009156AE /* ReviewCountView.swift */; };
 		D716BD0C22F0AB54009156AE /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0B22F0AB54009156AE /* Analytics.swift */; };
 		D716BD1022F0D00F009156AE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0F22F0D00F009156AE /* HomeViewModel.swift */; };
+		D716BD1222F0EC0D009156AE /* SingleAnalyticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD1122F0EC0D009156AE /* SingleAnalyticView.swift */; };
+		D716BD1422F0F0BE009156AE /* HomeAnalyticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD1322F0F0BE009156AE /* HomeAnalyticView.swift */; };
+		D7FF294622F10ABE00970436 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294522F10ABE00970436 /* ReviewController.swift */; };
+		D7FF294822F10AC400970436 /* ReviewPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294722F10AC400970436 /* ReviewPhotoCell.swift */; };
+		D7FF294A22F10EBE00970436 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294922F10EBE00970436 /* ReviewViewModel.swift */; };
+		D7FF294C22F10EC800970436 /* ReviewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294B22F10EC800970436 /* ReviewCellViewModel.swift */; };
+		D7FF294E22F1194700970436 /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294D22F1194700970436 /* ImageCard.swift */; };
+		D7FF295022F1196500970436 /* EmojiOptionsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294F22F1196500970436 /* EmojiOptionsOverlay.swift */; };
+		D7FF295222F1198000970436 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF295122F1198000970436 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +86,15 @@
 		D716BD0922F0A4E1009156AE /* ReviewCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCountView.swift; sourceTree = "<group>"; };
 		D716BD0B22F0AB54009156AE /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		D716BD0F22F0D00F009156AE /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		D716BD1122F0EC0D009156AE /* SingleAnalyticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleAnalyticView.swift; sourceTree = "<group>"; };
+		D716BD1322F0F0BE009156AE /* HomeAnalyticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAnalyticView.swift; sourceTree = "<group>"; };
+		D7FF294522F10ABE00970436 /* ReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
+		D7FF294722F10AC400970436 /* ReviewPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPhotoCell.swift; sourceTree = "<group>"; };
+		D7FF294922F10EBE00970436 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		D7FF294B22F10EC800970436 /* ReviewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCellViewModel.swift; sourceTree = "<group>"; };
+		D7FF294D22F1194700970436 /* ImageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
+		D7FF294F22F1196500970436 /* EmojiOptionsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiOptionsOverlay.swift; sourceTree = "<group>"; };
+		D7FF295122F1198000970436 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F7721947747D64E67D2CFA7E /* Pods_Wadmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wadmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -188,6 +206,8 @@
 			children = (
 				D716BCF122F0263B009156AE /* LoginViewModel+Delegate.swift */,
 				D716BD0F22F0D00F009156AE /* HomeViewModel.swift */,
+				D7FF294922F10EBE00970436 /* ReviewViewModel.swift */,
+				D7FF294B22F10EC800970436 /* ReviewCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -195,9 +215,12 @@
 		D716BCE822F025D1009156AE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D7FF294422F10A9700970436 /* Review */,
 				D716BD0522F02916009156AE /* Login */,
 				D716BD0822F02929009156AE /* Home */,
 				D716BD0922F0A4E1009156AE /* ReviewCountView.swift */,
+				D716BD1122F0EC0D009156AE /* SingleAnalyticView.swift */,
+				D716BD1322F0F0BE009156AE /* HomeAnalyticView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,6 +242,18 @@
 				D716BCBF22F00C3E009156AE /* ViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		D7FF294422F10A9700970436 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				D7FF294522F10ABE00970436 /* ReviewController.swift */,
+				D7FF294722F10AC400970436 /* ReviewPhotoCell.swift */,
+				D7FF294D22F1194700970436 /* ImageCard.swift */,
+				D7FF294F22F1196500970436 /* EmojiOptionsOverlay.swift */,
+				D7FF295122F1198000970436 /* CardView.swift */,
+			);
+			path = Review;
 			sourceTree = "<group>";
 		};
 		FBDF038230580A04FBC99D9A /* Pods */ = {
@@ -360,10 +395,12 @@
 				D716BCEE22F025F9009156AE /* LoginDelegate.swift in Sources */,
 				D716BCD522F023CD009156AE /* UIView.swift in Sources */,
 				D716BD0722F0291D009156AE /* HomeView.swift in Sources */,
+				D7FF294622F10ABE00970436 /* ReviewController.swift in Sources */,
 				D716BCF022F02629009156AE /* UITextField.swift in Sources */,
 				D716BCD922F02419009156AE /* CGRect.swift in Sources */,
 				D716BD0A22F0A4E1009156AE /* ReviewCountView.swift in Sources */,
 				D716BCEA22F025DB009156AE /* LoginController.swift in Sources */,
+				D7FF295022F1196500970436 /* EmojiOptionsOverlay.swift in Sources */,
 				D716BCF822F02767009156AE /* Helper.swift in Sources */,
 				D716BCD322F023BF009156AE /* Device.swift in Sources */,
 				D716BCC022F00C3E009156AE /* ViewController.swift in Sources */,
@@ -371,16 +408,23 @@
 				D716BD1022F0D00F009156AE /* HomeViewModel.swift in Sources */,
 				D716BCBE22F00C3E009156AE /* AppDelegate.swift in Sources */,
 				D716BCEC22F025EE009156AE /* LoginView.swift in Sources */,
+				D7FF294E22F1194700970436 /* ImageCard.swift in Sources */,
+				D7FF294822F10AC400970436 /* ReviewPhotoCell.swift in Sources */,
+				D716BD1222F0EC0D009156AE /* SingleAnalyticView.swift in Sources */,
 				D716BCE322F024E9009156AE /* Abbreviation.swift in Sources */,
+				D7FF294A22F10EBE00970436 /* ReviewViewModel.swift in Sources */,
 				D716BD0222F02873009156AE /* Links.swift in Sources */,
+				D7FF295222F1198000970436 /* CardView.swift in Sources */,
 				D716BCF222F0263B009156AE /* LoginViewModel+Delegate.swift in Sources */,
 				D716BCFC22F0283F009156AE /* Photos.swift in Sources */,
 				D716BCFE22F02844009156AE /* Exif.swift in Sources */,
 				D716BD0C22F0AB54009156AE /* Analytics.swift in Sources */,
+				D716BD1422F0F0BE009156AE /* HomeAnalyticView.swift in Sources */,
 				D716BCDF22F02497009156AE /* UIImage.swift in Sources */,
 				D716BCE122F024D0009156AE /* Defaults.swift in Sources */,
 				D716BCDD22F02474009156AE /* UICollectionView.swift in Sources */,
 				D716BCF622F02698009156AE /* Me.swift in Sources */,
+				D7FF294C22F10EC800970436 /* ReviewCellViewModel.swift in Sources */,
 				D716BCD722F023D5009156AE /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

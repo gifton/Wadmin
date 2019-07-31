@@ -33,7 +33,7 @@ class ReviewCountView: UIView {
     
     
     private func setView() {
-        indicator.frame = CGRect(origin: .zero, size: CGSize(width: 60, height: 60))
+        indicator.frame = CGRect(origin: CGPoint(x: 10, y: 0), size: CGSize(width: 60, height: 60))
         indicator.backgroundColor = .black
         indicator.layer.cornerRadius = 30
         indicator.layer.masksToBounds = true
