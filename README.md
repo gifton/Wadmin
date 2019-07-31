@@ -13,7 +13,7 @@ To use the application, confirm you are set as an admin with [gifton](https://gi
 
 To use you must have xcode 10.3 and swift 5.0.1, and [cocoapods](https://cocoapods.org/)
 
-### instilation
+### instillation
 * clone repo into desired folder
 * run pod install to install required dependancies
 * open the .xcworkspace folder (the white one, NOT the blue one) 
