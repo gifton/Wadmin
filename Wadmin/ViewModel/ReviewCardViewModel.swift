@@ -24,6 +24,15 @@ class ReviewCardViewModel: NSObject {
     public var username: String {
         return photo.user.username
     }
+    public var isOrigional: Bool {
+        return (photo.cantFindOriginal)
+    }
+    public var date: String {
+        return photo.createdAt
+    }
+    public var fileType: String {
+        return photo.rawFileType
+    }
     
     func review(_ review: Review, completion: @escaping () -> Void) {
         WesaturateAPI.reviewPhoto(withID: id, review: review) {

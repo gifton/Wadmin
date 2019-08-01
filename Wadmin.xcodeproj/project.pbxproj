@@ -41,6 +41,7 @@
 		D716BD1022F0D00F009156AE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD0F22F0D00F009156AE /* HomeViewModel.swift */; };
 		D716BD1222F0EC0D009156AE /* SingleAnalyticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD1122F0EC0D009156AE /* SingleAnalyticView.swift */; };
 		D716BD1422F0F0BE009156AE /* HomeAnalyticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D716BD1322F0F0BE009156AE /* HomeAnalyticView.swift */; };
+		D7D64EE522F193CC00E5306F /* FileTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D64EE422F193CC00E5306F /* FileTypeView.swift */; };
 		D7FF294622F10ABE00970436 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294522F10ABE00970436 /* ReviewController.swift */; };
 		D7FF294A22F10EBE00970436 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294922F10EBE00970436 /* ReviewViewModel.swift */; };
 		D7FF294C22F10EC800970436 /* ReviewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FF294B22F10EC800970436 /* ReviewCardViewModel.swift */; };
@@ -87,6 +88,7 @@
 		D716BD0F22F0D00F009156AE /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D716BD1122F0EC0D009156AE /* SingleAnalyticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleAnalyticView.swift; sourceTree = "<group>"; };
 		D716BD1322F0F0BE009156AE /* HomeAnalyticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAnalyticView.swift; sourceTree = "<group>"; };
+		D7D64EE422F193CC00E5306F /* FileTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypeView.swift; sourceTree = "<group>"; };
 		D7FF294522F10ABE00970436 /* ReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
 		D7FF294922F10EBE00970436 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		D7FF294B22F10EC800970436 /* ReviewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCardViewModel.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				D7FF294D22F1194700970436 /* ReviewCard.swift */,
 				D7FF294F22F1196500970436 /* EmojiOptionsOverlay.swift */,
 				D7FF295122F1198000970436 /* CardView.swift */,
+				D7D64EE422F193CC00E5306F /* FileTypeView.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				D7FF294A22F10EBE00970436 /* ReviewViewModel.swift in Sources */,
 				D716BD0222F02873009156AE /* Links.swift in Sources */,
 				D7FF295222F1198000970436 /* CardView.swift in Sources */,
+				D7D64EE522F193CC00E5306F /* FileTypeView.swift in Sources */,
 				D716BCF222F0263B009156AE /* LoginViewModel+Delegate.swift in Sources */,
 				D716BCFC22F0283F009156AE /* Photos.swift in Sources */,
 				D716BCFE22F02844009156AE /* Exif.swift in Sources */,

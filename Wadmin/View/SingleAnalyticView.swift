@@ -20,6 +20,8 @@ class SingleAnalyticView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
     var analytic: Analytic
     private var titleLabel = UILabel()
     private var photo = UIImageView()
