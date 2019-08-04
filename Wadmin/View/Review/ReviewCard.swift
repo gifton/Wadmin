@@ -32,7 +32,7 @@ class ReviewCard: CardView {
         lbl.font = Device.font.title()
         lbl.textColor = Device.colors.offWhite
         lbl.addShadow(offset: CGSize(width: 2, height: 2))
-        if isOrigional {
+        if !(isOrigional) {
             lbl.text = "Origional"
         } else {
             lbl.text = "Edit"
